@@ -1,5 +1,7 @@
+# This is a basic workflow to help you get started with Actions
+
 name: CI
- 
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
@@ -27,7 +29,8 @@ jobs:
            python-version: '3.8'            
           
       - name: install requirements and run tests
-        run: virtualenv -p python3.8 env   
+        run: | 
+          pip install virtualenv
                     
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -36,8 +39,8 @@ jobs:
            aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY }}
            aws-session-token: ${{secrets.AWS_SESSION_TOKEN}}
            aws-region: us-east-1
-            
+           
       - name: test aws cli
         run: source env/bin/activate
           zappa update dev
-          zappa deploy dev 
+          zappa deploy dev  
