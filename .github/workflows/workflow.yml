@@ -27,7 +27,7 @@ jobs:
            python-version: '3.8'            
           
       - name: install requirements and run tests
-        run: pip install virtualenv
+        run: virtualenv -p python3.8 env   
                     
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
